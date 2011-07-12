@@ -83,8 +83,8 @@ a:hover { color: #036; }
 
 /* Body */
 body{
-	background: #F5F4FE;
-	color: #000305;
+	background: #F2EBDC;
+	color: #333;
 	font-size: 87.5%; /* Base font size: 14px */
 	font-family: 'Trebuchet MS', Trebuchet, 'Lucinda Sans Unicode', 'Lucinda Grande', 'Lucinda Sans', Arial, sans-serif;
 	line-height: 1.429;
@@ -92,7 +92,6 @@ body{
 	padding: 0;
 	text-align: left;
 }
-
 /* Headings */
 h2 {font-size: 1.571em} /* 22px */
 h3 {font-size: 1.429em} /* 20px */
@@ -114,7 +113,7 @@ a:link, a:visited {
 	text-decoration: underline;
 }
 a:hover, a:active {
-	background-color: #C74350;
+	background-color: #D9A384;
 	color: #fff;
 	text-decoration: none;
 	text-shadow: 1px 1px 1px #333;
@@ -174,9 +173,92 @@ tfoot td {}
 img.right figure.right {float: right; margin: 0 0 2em 2em;}
 img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 
+/* Clear */
+.clear{
+	clear: both;
+}
 
 
 
+/* Page elements */
+#container{
+	width: 960px;
+	margin: 20px auto 0;
+}
+#header{
+	
+}
+#header h1{
+	height: 80px;
+	font-size: 26px;
+	font-weight: normal;
+}
+#header h1 a{
+	text-decoration: none;
+	display: block;
+}
+#nav{
+	display: block;
+	z-index: 1000;
+	background: #59381C;
+	font-size: 1.143em;
+	height: 40px;
+	width: 960px;
+	line-height: 30px;
+	
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+}
+#nav ul,
+#nav li{
+	list-style-type: none;
+}
+#nav li{
+	float: left;
+	display: inline;
+}
+#nav a:link, #nav a:visited{
+	color: #fff;
+	display: inline-block;
+	height: 30px;
+	padding: 5px 1.5em;
+	text-decoration: none;
+}
+#nav li:first-child a{
+	border-radius: 5px 0 0 5px;
+	-moz-border-radius: 5px 0 0 5px;
+	-webkit-border-radius: 5px 0 0 5px;
+}
+section{
+	background: #fff;
+	margin: 20px auto 150px;
+	padding: 20px;
+	
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+}
+
+#about{
+	background: #fff;
+	font-style: normal;
+	margin-bottom: 2em;
+	overflow: hidden;
+	padding: 20px;
+	text-align: left;
+	
+	border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	-webkit-border-radius: 10px 10px 10px 10px;
+}
+#about .primary{ float: left; width: 165px; }
+#about .primary strong { color: #C64350; display: block; font-size: 1.286em; }
+#about .photo { float: left; margin: 5px 20px; }
+
+#about .url:link, #about .url:visited { text-decoration: none; }
+
+#about .bio { float: right; width: 500px; }
 
 
 .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
