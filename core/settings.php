@@ -1,13 +1,17 @@
 <?php
 
+/* Debug mode */
+define ("DEBUG_MODE", true);
+
 /* Site details - temporary */
 /* TODO: get these details from db */
 define ("SITE_NAME", "One Page CMS");
+define ("AUTHOR_NAME", "Praveen Sewak");
 
 /* Database details */
 define ("DB_SERVER", "localhost");
 define ("DB_USER", "root");
-define ("DB_PASS", "pass");
+define ("DB_PASS", "Password1");
 define ("DB_NAME", "onepage");
 
 /* Database tables */
