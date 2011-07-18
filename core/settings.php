@@ -1,12 +1,10 @@
 <?php
 
-/* Debug mode */
-define ("DEBUG_MODE", true);
-
 /* Site details - temporary */
 /* TODO: get these details from db */
 define ("SITE_NAME", "One Page CMS");
 define ("AUTHOR_NAME", "Praveen Sewak");
+define ("GOOGLE_ANALYTICS",""); //XXXXX-X
 
 /* Database details */
 define ("DB_SERVER", "localhost");
