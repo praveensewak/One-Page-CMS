@@ -19,6 +19,22 @@ $(document).ready(function(){
     if($(window).scrollTop() != 0){
         $("#backToTop").fadeIn();
     }
+    $("a[rel*=leanModal]").leanModal();	
+    
+    
+    $("#form_login").submit(function(){
+        $.ajax({
+            type: 'POST',
+            url: 'action/login.php',
+            success: function(){
+                alert('Welcome Professor!');
+            },
+            error: function(){
+                alert('Stupid Bugs!');
+            }
+        });
+        return false;
+    });
 });
 
 

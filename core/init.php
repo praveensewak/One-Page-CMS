@@ -49,10 +49,28 @@ if(ini_get('date.timezone') == ''){
     date_default_timezone_set('GMT');
 }
 
-require_once('./core/settings.php');
-require_once('./core/helper/sanitize.php');
-require_once('./core/class/Database.php');
-require_once('./core/class/Content.php');
+/* CORE FOLDER NAME */
+$core_path = 'core';
+
+/* RESOLVE SYSTEM PATH */
+if(function_exists('realpath') AND @realpath($core_path) !== FALSE){
+    $core_path = realpath($core_path).'/';
+}
+$core_path = rtrim($core_path,'/').'/';
+if(!is_dir($core_path)){
+    exit("Your core folder path does not appear to be set correctly. 
+        Please open the following file and correct this: ".  pathinfo(__FILE__,PATHINFO_BASENAME));
+}
+
+/* SET MAIN PATH CONSTANTS */
+define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+define('COREPATH', str_replace("\\", "/", $core_path));
+
+
+require_once(COREPATH.'settings.php');
+require_once(COREPATH.'helper/sanitize.php');
+require_once(COREPATH.'class/Database.php');
+require_once(COREPATH.'class/Content.php');
 
 
 Database::setConnectionInfo(DB_NAME, DB_USER, DB_PASS);

@@ -1,5 +1,10 @@
 <?php
+session_start();
 
+if(isset($_SESSION['ONEPAGECMS_ADMIN_ID']) && $_SESSION['ONEPAGECMS_ADMIN_ID'] !== ''){
+    define('LOGGED_IN', true);
+}else
+    define('LOGGED_IN', false);
 ?>
 
 <!doctype html>
@@ -16,30 +21,32 @@
   <meta name="author" content="<?php echo AUTHOR_NAME ?>">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <link rel="stylesheet" href="css/style.css?v=1">
   <script src="js/libs/modernizr-1.7.min.js"></script>
 
 </head>
-<body id="onepage">
-  <div id="backToTop"><a id="top">Back to Top</a></div>
-  <div id="container">
+<body id="onepage" class="<?php if(LOGGED_IN): ?>admin<?php endif; ?>">
+    <?php include('html/admin-bar.tpl.php'); ?>
+    <div id="backToTop"><a id="top">Back to Top</a></div>
+    <div id="container">
     <header id="header">
-    	<h1><a href="/"><?php echo SITE_NAME ?></a></h1>
-        <nav id="nav">
-            <ul>
-            	<?php
-                    foreach($cid as $id){
-                        $page = new Content();
-                        $page->load($id['id']);
-                ?>
-                <li><a href="#<?php echo sanitize($page->title, 'anchor') ?>"><?php echo $page->title ?></a></li>
-                <?php } ?>
-            </ul>
-        </nav>
+        <div id="logo"><a href="/"><img src="<?php echo SITE_LOGO ?>" alt="<?php echo SITE_NAME ?>" /></a></div>
+        <h1><a href="/"><?php echo SITE_NAME ?></a></h1>
     </header>
+    <nav id="nav" class="clear">
+        <ul>
+            <?php
+                foreach($cid as $id){
+                    $page = new Content();
+                    $page->load($id['id']);
+            ?>
+            <li><a href="#<?php echo sanitize($page->title, 'anchor') ?>"><?php echo $page->title ?></a></li>
+            <?php } ?>
+        </ul>
+    </nav>
     <div id="main" role="main" class="clear">
         <?php
             foreach($cid as $id){
@@ -61,14 +68,41 @@
             
             <span class="bio">Some BIO information here.</span>
         </address>
-        <p>2005-2011 <a href="http://www.praveensewak.com" target="_blank">Praveen Sewak</a>.</p>
+        <p>
+            2005-2011 <a href="http://www.praveensewak.com" target="_blank">Praveen Sewak</a>. 
+            <?php if(!LOGGED_IN): ?><a href="#modal_login" rel="leanModal">Admin</a> <?php endif; ?>
+        </p>
     </footer>
+    
+      <?php if(!LOGGED_IN): ?>
+      <div id="modal_login" class="modal_window">
+          <h3>Administrator Login</h3>
+          <div class="modal_content">
+              <form id="form_login" class="form" action="" method="post">
+                  <p>Please login below: </p>
+                  <div class="row">
+                      <label for="tb_username">Username: </label>
+                      <input type="text" name="tb_username" id="tb_username" />
+                  </div>
+                  <div class="row">
+                      <label for="tb_password">Password: </label>
+                      <input type="password" name="tb_password" id="tb_password" />
+                  </div>
+                  <div class="buttons">
+                      <input type="submit" name="btn_login" value="Login" />
+                  </div>
+              </form>
+          </div>
+      </div>
+      <?php endif; ?>
+      
   </div> <!-- eo #container -->
 
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
   <script>window.jQuery || document.write("<script src='js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
   
+  <script src="js/libs/jquery.leanModal.min.js"></script>
   <script src="js/mylibs/jquery.scrollTo-1.4.2-min.js"></script>
   <script src="js/mylibs/jquery.dimensions.min.js"></script>
 

@@ -3,6 +3,7 @@
 /* Site details - temporary */
 /* TODO: get these details from db */
 define ("SITE_NAME", "One Page CMS");
+define ("SITE_LOGO", "/img/one-page-cms.png"); // Absolute url
 define ("AUTHOR_NAME", "Praveen Sewak");
 define ("GOOGLE_ANALYTICS",""); //XXXXX-X
 
