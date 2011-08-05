@@ -21,13 +21,19 @@ $(document).ready(function(){
     }
     $("a[rel*=leanModal]").leanModal();	
     
+    $("textarea.editor").ckeditor();
     
     $("#form_login").submit(function(){
         $.ajax({
             type: 'POST',
-            url: 'action/login.php',
-            success: function(){
-                alert('Welcome Professor!');
+            url: 'login.php',
+            data: 'tb_username='+$('#tb_username').val()+'&tb_password='+$('#tb_password').val(),
+            success: function(response){
+                if(!response == ''){
+                    window.location.reload();
+                }else{
+                    alert('You do not belong here!');
+                }
             },
             error: function(){
                 alert('Stupid Bugs!');

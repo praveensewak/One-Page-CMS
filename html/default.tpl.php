@@ -54,6 +54,11 @@ if(isset($_SESSION['ONEPAGECMS_ADMIN_ID']) && $_SESSION['ONEPAGECMS_ADMIN_ID'] !
                 $page->load($id['id']);
         ?>
         <section id="<?php echo sanitize($page->title,'anchor') ?>">
+            <?php if(LOGGED_IN): ?>
+            <div class="admin_edit_link">
+                <a href="#modal_edit_page" rel="leanModal">Edit Content</a>
+            </div>
+            <?php endif; ?>
             <h2><?php echo $page->title ?></h2>
             <?php echo $page->body ?>
         </section>
@@ -94,6 +99,26 @@ if(isset($_SESSION['ONEPAGECMS_ADMIN_ID']) && $_SESSION['ONEPAGECMS_ADMIN_ID'] !
               </form>
           </div>
       </div>
+      <?php else: ?>
+        <div id="modal_edit_page" class="modal_window width_1000">
+            <h3>Edit Content</h3>
+            <div class="modal_content">
+                <form id="form_login" class="form" action="" method="post">
+                    <p>Make sure to save the changes.</p>
+                    <div class="row">
+                        <label for="tb_content_title">Title: </label>
+                        <input type="text" name="tb_content_title" id="tb_content_title" />
+                    </div>
+                    <div class="row">
+                        <label for="tb_content_body">Content: </label>
+                        <textarea class="editor" id="tb_content_body" name="tb_content_body"></textarea>
+                    </div>
+                    <div class="buttons">
+                      <input type="submit" name="btn_save" value="Save Changes" />
+                  </div>
+                </form>
+            </div>
+        </div>
       <?php endif; ?>
       
   </div> <!-- eo #container -->
@@ -105,6 +130,11 @@ if(isset($_SESSION['ONEPAGECMS_ADMIN_ID']) && $_SESSION['ONEPAGECMS_ADMIN_ID'] !
   <script src="js/libs/jquery.leanModal.min.js"></script>
   <script src="js/mylibs/jquery.scrollTo-1.4.2-min.js"></script>
   <script src="js/mylibs/jquery.dimensions.min.js"></script>
+  
+  <?php if(LOGGED_IN): ?>
+  <script src="js/libs/ckeditor/ckeditor.js"></script>
+  <script src="js/libs/ckeditor/adapters/jquery.js"></script>
+  <?php endif; ?>
 
   <!-- scripts concatenated and minified via ant build script-->
   <script src="js/plugins.js"></script>
